@@ -39,7 +39,7 @@ export const defaultContentPageLayout: PageLayout = {
       ],
     }),
     Component.Explorer({
-      title: "Notes",
+      title: "Recettes",
       folderDefaultState: "open",
     }),
   ],
@@ -64,7 +64,7 @@ export const defaultListPageLayout: PageLayout = {
       ],
     }),
     Component.Explorer({
-      title: "Notes",
+      title: "Recettes",
       folderDefaultState: "open",
     }),
   ],

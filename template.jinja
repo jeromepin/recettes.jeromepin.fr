@@ -1,0 +1,57 @@
+---
+title: {{ title }}
+lang: fr
+tags: {{ tags }}
+---
+
+<div class='meta-row'>
+    {%- if source %}
+    <div>
+        <span>Source: <a href="{{ source }}">{{ source }}</a></span>
+    </div>
+    {%- endif %}
+    <div class="servings-control">
+        <span>Portions:</span>
+        <button class="servings-btn" onclick="updateServings(-1)">−</button>
+        <span id="servings-display">{{ servings }}</span>
+        <button class="servings-btn" onclick="updateServings(1)">+</button>
+    </div>
+</div>
+
+
+## Ingredients
+
+{%- for section in sections %}
+    {%- if section.name %}
+### {{ section.name }}
+    {% endif %}
+
+<ul class='ing-list'>
+    {%- for ingredient in section.ingredients %}
+    <li>
+        <span>
+            <span class="ingredient_modifiers">{{ ingredient.modifiers }}</span>{{ ingredient.name | title }}
+        </span>
+        <span class='ing-qty'>
+            <span class='scalable-value' data-base='{{ ingredient.quantity.value }}'>{{ ingredient.quantity.value }}</span> {%- if ingredient.quantity.unit %} <span class='unit'>{{ ingredient.quantity.unit }}</span>{% endif %}
+        </span>
+    </li>
+    {%- endfor %}
+</ul>
+{% endfor %}
+
+## Instructions
+
+{%- for section in sections %}
+    {%- if section.name %}
+### {{ section.name }}
+    {% endif %}
+
+<div class='steps'>
+    {%- for step in section.steps %}
+    <div class='step-block'>
+        <span class='step-num'>{{ step.number }}.</span> <ul>{{ step.content }}</ul>
+    </div>
+    {%- endfor %}
+</div>
+{% endfor %}

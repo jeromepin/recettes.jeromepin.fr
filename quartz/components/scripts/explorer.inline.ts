@@ -49,9 +49,9 @@ function toggleFolder(evt: MouseEvent) {
   const folderContainer = (
     isSvg
       ? // svg -> div.folder-container
-        target.parentElement
+      target.parentElement
       : // button.folder-button -> div -> div.folder-container
-        target.parentElement?.parentElement
+      target.parentElement?.parentElement
   ) as MaybeHTMLElement
   if (!folderContainer) return
   const childFolderContainer = folderContainer.nextElementSibling as MaybeHTMLElement
@@ -295,6 +295,48 @@ window.addEventListener("resize", function () {
     return
   }
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+  {
+    window.updateServings = (change) => {
+      {
+        const newServings = currentServings + change;
+        if (newServings < 1) return;
+
+        currentServings = newServings;
+        servingsDisplay.textContent = currentServings;
+
+        const scaleFactor = currentServings / baseServings;
+
+        var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?portions=' + currentServings.toString();
+        window.history.pushState({ path: newurl }, '', newurl);
+
+        document.querySelectorAll('.scalable-value').forEach(el => {
+          {
+            const base = parseFloat(el.getAttribute('data-base'));
+            if (!isNaN(base)) {
+              {
+                const newVal = base * scaleFactor;
+                el.textContent = Number.isInteger(newVal) ? newVal : newVal.toFixed(1).replace(/\.0$/, '');
+              }
+            }
+          }
+        });
+      }
+    };
+
+    const baseServings = parseInt(document.getElementById('servings-display')?.innerHTML); // servings written into the recipe
+    let requestedServings = parseInt((new URLSearchParams(document.location.search)).get("portions") ?? baseServings.toString()); // Eventual query param holding requested servings
+
+    const servingsDisplay = document.getElementById('servings-display'); // Div to display (and change) the servings
+
+    let currentServings = baseServings;
+
+    if (requestedServings && requestedServings != baseServings) {
+      updateServings(requestedServings - baseServings)
+    }
+  }
+});
 
 function setFolderState(folderElement: HTMLElement, collapsed: boolean) {
   return collapsed ? folderElement.classList.remove("open") : folderElement.classList.add("open")

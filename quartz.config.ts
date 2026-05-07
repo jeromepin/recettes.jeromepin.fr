@@ -8,13 +8,13 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Jérôme Pin's Notes",
+    pageTitle: "Mes recettes",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
     analytics: {},
-    locale: "en-US",
-    baseUrl: "notes.jeromepin.fr",
+    locale: "fr-FR",
+    baseUrl: "recettes.jeromepin.fr",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
