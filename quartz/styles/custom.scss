@@ -6,7 +6,7 @@ div#quartz-root {
 }
 
 .page>#quartz-body {
-    grid-template:
+    /* grid-template:
         "grid-sidebar-left grid-header grid-sidebar-right"
         "grid-sidebar-left grid-center grid-sidebar-right"
         "grid-sidebar-left grid-footer grid-sidebar-right"/420px auto 420px;
@@ -18,38 +18,40 @@ div#quartz-root {
 
     section.exercices-list {
         display: flex;
+    } */
+
+    article {
+        .meta-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 0.5rem; color: #666; }
+        .tag { background: #e0e0e0; color: #333; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; text-decoration: none; transition: background 0.2s; }
+        .tag:hover { background: #d0d0d0; }
+        .servings-control { display: flex; align-items: center; gap: 0.5rem; background: var(--panel); padding: 5px 12px; border-radius: 20px; font-weight: bold; }
+        .servings-btn { border: none; background: #fff; cursor: pointer; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .servings-btn:hover { background: var(--primary); color: white; }
+        h2 { margin-top: 2rem; color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+        h3.section-title { background: #eee; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.1rem; color: #444; margin-top: 1.5rem; }
+        ul.ing-list { list-style: none; padding: 0; }
+        ul.ing-list li { padding: 0.3rem 0; border-bottom: 1px dotted #eee; display: flex; justify-content: space-between; }
+        ul.ing-list li:last-child { border-bottom: none; }
+        .ing-qty { font-weight: bold; color: var(--accent); min-width: 60px; text-align: right; }
+        .step-block {
+            ul {
+                display: inline-grid;
+
+                li {
+                    list-style: none;
+                }
+            }
+        }
+        .step-num { font-weight: bold; color: #aaa; margin-right: 0.5rem; }
+        .ingredient_ref { background-color: #fff3e0; padding: 0 4px; border-radius: 4px; border-bottom: 2px solid #ffe0b2; }
+        .cookware_ref { background-color: #e3f2fd; padding: 0 4px; border-radius: 4px; border-bottom: 2px solid #bbdefb; color: #1565c0; }
+        .timer_ref { font-weight: bold; color: #d35400; }
+        .scalable-value { font-weight: 700; }
+        .unit { font-size: 0.9em; color: #555; }
+
     }
 }
 
 .explorer-content ul li>a {
     font-weight: 500;
 }
-
-
-.meta-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 0.5rem; color: #666; }
-.tag { background: #e0e0e0; color: #333; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; text-decoration: none; transition: background 0.2s; }
-.tag:hover { background: #d0d0d0; }
-.servings-control { display: flex; align-items: center; gap: 0.5rem; background: var(--panel); padding: 5px 12px; border-radius: 20px; font-weight: bold; }
-.servings-btn { border: none; background: #fff; cursor: pointer; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-.servings-btn:hover { background: var(--primary); color: white; }
-h2 { margin-top: 2rem; color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
-h3.section-title { background: #eee; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 1.1rem; color: #444; margin-top: 1.5rem; }
-ul.ing-list { list-style: none; padding: 0; }
-ul.ing-list li { padding: 0.3rem 0; border-bottom: 1px dotted #eee; display: flex; justify-content: space-between; }
-ul.ing-list li:last-child { border-bottom: none; }
-.ing-qty { font-weight: bold; color: var(--accent); min-width: 60px; text-align: right; }
-.step-block {
-    ul {
-        display: inline-grid;
-
-        li {
-            list-style: none;
-        }
-    }
-}
-.step-num { font-weight: bold; color: #aaa; margin-right: 0.5rem; }
-.ingredient_ref { background-color: #fff3e0; padding: 0 4px; border-radius: 4px; border-bottom: 2px solid #ffe0b2; }
-.cookware_ref { background-color: #e3f2fd; padding: 0 4px; border-radius: 4px; border-bottom: 2px solid #bbdefb; color: #1565c0; }
-.timer_ref { font-weight: bold; color: #d35400; }
-.scalable-value { font-weight: 700; }
-.unit { font-size: 0.9em; color: #555; }
