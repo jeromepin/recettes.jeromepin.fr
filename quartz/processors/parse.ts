@@ -12,6 +12,7 @@ import path from "path"
 import workerpool, { Promise as WorkerPromise } from "workerpool"
 import { QuartzLogger } from "../util/log"
 import { trace } from "../util/trace"
+import { convertCooklang } from "../util/cooklang"
 import { BuildCtx, WorkerSerializableBuildCtx } from "../util/ctx"
 import { styleText } from "util"
 
@@ -93,6 +94,11 @@ export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
 
         // strip leading and trailing whitespace
         file.value = file.value.toString().trim()
+
+        const rawContent = file.value.toString()
+        if (/^---\s*\n[\s\S]*?format:\s*cooklang\s*\n/.test(rawContent)) {
+          file.value = convertCooklang(fp, rawContent)
+        }
 
         // Text -> Text transforms
         for (const plugin of cfg.plugins.transformers.filter((p) => p.textTransform)) {
