@@ -336,13 +336,14 @@ function renderRecipe(data: ChefOutput): string {
       lines.push(`### ${section.name}`)
       lines.push("")
     }
-    lines.push("<div class='steps'>")
     for (const step of section.steps) {
-      lines.push("    <div class='step-block'>")
-      lines.push(`        <span class='step-num'>${step.number}.</span> <ul><li>${step.content}</li></ul>`)
-      lines.push("    </div>")
+      lines.push("<div class='step-block'>")
+      lines.push("")
+      lines.push(`<span class='step-num'>${step.number}.</span> ${step.content}`)
+      lines.push("")
+      lines.push("</div>")
+      lines.push("")
     }
-    lines.push("</div>")
     lines.push("")
   }
 

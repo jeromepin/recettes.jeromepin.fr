@@ -33,15 +33,6 @@ div#quartz-root {
         ul.ing-list li { padding: 0.3rem 0; border-bottom: 1px dotted #eee; display: flex; justify-content: space-between; }
         ul.ing-list li:last-child { border-bottom: none; }
         .ing-qty { font-weight: bold; color: var(--accent); min-width: 60px; text-align: right; }
-        .step-block {
-            ul {
-                display: inline-grid;
-
-                li {
-                    list-style: none;
-                }
-            }
-        }
         .step-num { font-weight: bold; color: #aaa; margin-right: 0.5rem; }
         .ingredient_ref { background-color: #fff3e0; padding: 0 4px; border-radius: 4px; border-bottom: 2px solid #ffe0b2; }
         .cookware_ref { background-color: #e3f2fd; padding: 0 4px; border-radius: 4px; border-bottom: 2px solid #bbdefb; color: #1565c0; }
