@@ -271,11 +271,8 @@ function renderIngredientItem(ingredient: ChefIngredient): string {
   return lines.join("\n")
 }
 
-function renderRecipe(data: ChefOutput): string {
+function renderRecipe(data: ChefOutput, rawFrontmatter: string): string {
   const meta = data.metadata.map
-  const title = (meta.title as string) || data.name
-  const tags = parseTags(meta.tags)
-  const lang = (meta.locale as string) || (meta.lang as string) || "fr"
   const servings = meta.servings ?? 1
   const servingsLabel = (meta.servings_label as string) || "Portions"
   const source = meta.source as string | undefined
@@ -285,11 +282,9 @@ function renderRecipe(data: ChefOutput): string {
 
   const lines: string[] = []
 
-  // Frontmatter
+  // Frontmatter — pass through original keys verbatim
   lines.push("---")
-  lines.push(`title: ${title}`)
-  lines.push(`lang: ${lang}`)
-  lines.push(`tags: [${tags.map((t) => JSON.stringify(t)).join(", ")}]`)
+  lines.push(rawFrontmatter)
   lines.push("---")
   lines.push("")
 
@@ -350,19 +345,22 @@ function renderRecipe(data: ChefOutput): string {
   return lines.join("\n")
 }
 
-function parseTags(raw: unknown): string[] {
-  if (Array.isArray(raw)) return raw.map(String)
-  if (typeof raw === "string") return raw.split(",").map((t) => t.trim())
-  return []
-}
-
 export function convertCooklang(filePath: string, content: string): string {
   const name = filePath.replace(/.*\//, "").replace(/\.[^.]+$/, "")
+
+  const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/)
+  const rawFm = fmMatch
+    ? fmMatch[1]
+        .split("\n")
+        .filter((l) => !/^format:\s*cooklang\s*$/.test(l.trim()))
+        .join("\n")
+    : ""
+
   const stdout = execFileSync("chef", ["recipe", "--format=json", "--name", name], {
     input: content,
     encoding: "utf-8",
     timeout: 10_000,
   })
   const data: ChefOutput = JSON.parse(stdout)
-  return renderRecipe(data)
+  return renderRecipe(data, rawFm)
 }
