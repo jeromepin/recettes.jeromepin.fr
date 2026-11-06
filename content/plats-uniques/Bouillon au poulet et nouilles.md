@@ -1,6 +1,6 @@
 ---
 format: cooklang
-title: Soupe au poulet et nouilles
+title: Bouillon au poulet et nouilles
 servings: 5
 prep time: 90 minutes
 cook time: 30 minutes
@@ -18,7 +18,7 @@ Ajouter l'@aïl{4}, le @bouillon de volaille{2,5%L} et les @herbes de provence{}
 
 Ajouter le @poulet (blancs ou cuisses){4}, porter à ébullition et laisser mijoter.
 
-Sortir le poulet, ajouter les @nouilles (){300%g} et laisser cuire.
+Sortir le poulet, ajouter les @nouilles (orzo){300%g} et laisser cuire.
 
 Pendant ce temps, couper le poulet en morceaux.
 
